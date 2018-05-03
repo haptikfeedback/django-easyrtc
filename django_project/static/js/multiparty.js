@@ -690,10 +690,10 @@ function appInit() {
 
 
     var roomId = $('div[data-id]').attr('data-id')
-    if (window.location.href.search(/localhost/)){
-        easyrtc.setSocketUrl("localhost:8080");  
+    if (window.location.href=="localhost"){
+        easyrtc.setSocketUrl("localhost:8080")
     } else {
-        easyrtc.setSocketUrl("20.24.248.127:8080")
+        easyrtc.setSocketUrl("24.20.248.127:8080")
     }
     easyrtc.setRoomOccupantListener(callEverybodyElse);
     easyrtc.joinRoom(roomId, null, loginSuccess, null);
