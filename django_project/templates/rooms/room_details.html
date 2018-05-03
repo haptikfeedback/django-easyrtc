@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+{% load staticfiles %}
+{% block title %}HD Room{% endblock %}
+
+
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/room_720p.css' %}" />
+{% endblock %}
+
+{% block content %}
+<body onload="connect();">
+    <section id="wrapper">
+        <h1>Django / EasyRTC Demo: Video+Audio HD 720p</h1>
+        <div id="demoContainer">
+            <div>
+                Note: your own image will show up postage stamp sized, while the other party"s video will be shown in high-definition (1280x720). Note: not all webcams are seen by WebRTC as providing high-definition video; the fallback is to use standard definition (640x480).
+            </div>
+            <div id="connectControls">
+                <div id="iam">Not yet connected...</div>
+                <br />
+                <strong>Connected users:</strong>
+                <div id="otherClients"></div>
+            </div>
+            <div id="videos">
+                
+                <div style="position:relative;float:left;" width="1282" height="722">
+                    <video autoplay="autoplay" id="callerVideo"></video>
+                    <video  class="easyrtcMirror" autoplay="autoplay" id="selfVideo" muted="true" volume="0" ></video>
+                </div>
+                <!-- each caller video needs to be in it"s own div so it"s close button can be positioned correctly -->
+            </div>
+        </div>
+    </section>
+</body>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="{% static "js/room_720p.js" %}"></script>
+{% endblock %}
+

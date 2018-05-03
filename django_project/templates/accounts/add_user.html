@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block title %}Add User{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'css/user_room_list.css' %}"/>
+{% endblock %}
+
+{% block content %}
+
+<div id="user_room_list">
+    <h2>Rooms:</h2>
+    <ul class="room_list">
+        {% for users in User %}
+        <li>
+            <a href="{% url 'room_detail' pk=room.pk %}">{{ User.name }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

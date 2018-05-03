@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block title %}Add User{% endblock %}
+
+{% block content %}
+<div>
+    <h1>{{ room.name }}</h1>
+    <hr>
+    <h3>Members:</h3>
+    <ul>
+        {% for user in room.users.all %}
+        
+        <li>
+            <form method="POST" action="{% url 'remove_member' pk=room.pk %}">
+                {% csrf_token %}
+                {{ user.username }} {{ user.first_name }} {{ user.last_name }}
+                <input type="hidden" value="{{ user.pk }}" name="user_id">
+                <button>Remove User</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+    <hr>
+    <form method="POST" action="{% url 'add_member' pk=room.pk %}">
+        {% csrf_token %}
+        <select name="user_id" id="user-select">
+        {% for user in users %}
+            <option value="{{ user.id }}">
+                {{ user.username }}
+            </option>
+        {% endfor %}
+        </select>
+        <button>Add User To Room</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% load static %}
+{% load user_groups %}
+{% block title %}User_Room_List{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'css/user_room_list.css' %}"/>
+{% endblock %}
+
+{% block content %}
+<div id="user_room_list">
+    <h2>Rooms:</h2>
+    <ul class="room_list">
+        {% for room in rooms %}
+        <li>
+            <a href="{% url 'room_detail' pk=room.pk %}">{{ room.name }}</a>
+            {% if request.user|has_group:"teacher" %}
+                <a href="{% url 'edit_room' pk=room.pk %}">Edit</a>
+            {% endif %}
+        </li>
+        <form>
+            <button><a href="{% url 'create_room' %}">Add Room</button>
+        </form>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

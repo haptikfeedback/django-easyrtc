@@ -1,0 +1,20 @@
+#registration {
+    max-width: 800px;
+    margin: 5em auto;
+}
+
+.registration_title{
+    text-decoration: underline;
+}
+
+.name {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 15px;
+}
+
+@media only screen and (max-width: 800px){
+    .name {
+        display: block;
+    }
+}

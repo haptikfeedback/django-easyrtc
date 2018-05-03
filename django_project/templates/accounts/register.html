@@ -1,0 +1,64 @@
+{% extends 'layout.html' %} 
+{% load static %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'css/register.css' %}"/>
+{% endblock %}
+
+{% block content %}
+<form id="registration" method="POST">
+    {% csrf_token %} 
+    <div class="registration_title">
+        <h1>Registration:</h1>
+    </div>
+    <div>
+        {% for error in errors %}
+            {{ error }}
+        {% endfor %}
+    </div>
+    <div class="name">
+        <p>
+            <label for="id_first_name">First name:</label>
+            <input type="text" name="first_name" maxlength="30" required="True" id="id_first_name">
+            <!-- <span class="helptext">Optional.</span> -->
+        </p>
+        <p>
+            <label for="id_last_name">Last name:</label>
+            <input type="text" name="last_name" maxlength="30" required="True" id="id_last_name">
+            <!-- <span class="helptext">Optional.</span> -->
+        </p>
+    </div>
+    <p>
+        <label for="id_username">Username:</label>
+        <input type="text" name="username" maxlength="150" autofocus="" required="True" id="id_username">
+        <span class="helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span>
+    </p>
+    <p>
+        <label for="id_email">Email:</label>
+        <input type="email" name="email" maxlength="254" required="True" id="id_email">
+        <!-- <span class="helptext">Required. Inform a valid email address.</span> -->
+    </p>
+    <p>
+        <label for="id_password1">Password:</label>
+        <input type="password" name="password1" required="True" id="id_password1">
+        <span class="helptext"></span>
+    </p>
+    <ul>
+        <li>Your password can't be too similar to your other personal information.</li>
+        <li>Your password must contain at least 8 characters.</li>
+        <li>Your password can't be a commonly used password.</li>
+        <li>Your password can't be entirely numeric.</li>
+    </ul>
+    <p></p>
+    <p>
+        <label for="id_password2">Password confirmation:</label>
+        <input type="password" name="password2" required="True" id="id_password2">
+        <!-- <span class="helptext">Enter the same password as before, for verification.</span> -->
+    </p>
+    <p>
+        <label for="is_teacher">Teacher?</label>
+        <input type="checkbox" name="is_teacher">
+    </p>
+    <button>Register</button>
+</form>
+{% endblock %}
