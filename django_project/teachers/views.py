@@ -38,6 +38,7 @@ def create_room(request):
             model_instance = form.save(commit=False)
             model_instance.owner = request.user
             model_instance.save()
+            model_instance.users.add(request.user)
             return redirect('/')
     else:
         form = forms.RoomForm()

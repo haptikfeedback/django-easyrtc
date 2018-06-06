@@ -18,10 +18,10 @@
                 <a href="{% url 'edit_room' pk=room.pk %}">Edit</a>
             {% endif %}
         </li>
+        {% endfor %}
         <form>
             <button><a href="{% url 'create_room' %}">Add Room</button>
         </form>
-        {% endfor %}
     </ul>
 </div>
 {% endblock %}
